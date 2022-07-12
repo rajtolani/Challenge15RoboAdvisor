@@ -127,31 +127,61 @@ def recommend_portfolio(intent_request):
 
 
     # YOUR CODE GOES HERE!
-    if source == "DialogCodeHook":
+     if source == "DialogCodeHook":
         slots = get_slots(intent_request)
-        if int(age) < 0 or int(age) > 65:
-         validation_result=build_validation_result(False,"age","Sorry, You have to be between 0 and 65 years for this service")
-         return elicit_slot(
-                intent_request["sessionAttributes"],
-                intent_request["currentIntent"]["name"],
-                slots,
-                validation_result["violatedSlot"],
-                validation_result["message"],
-            )
+        if age is not None:
+            if parse_int(age) < 0 or parse_int(age) > 65:
+                validation_result=build_validation_result(False,"age","Sorry, You have to be between 0 and 65 years for this service")
+                return elicit_slot(intent_request["sessionAttributes"],intent_request["currentIntent"]["name"],slots,validation_result["violatedSlot"],validation_result["message"])
+        if investment_amount is not None:
+            if parse_int(investment_amount)<5000:
+                validation_result=build_validation_result(False,'investmentAmount','Sorry, The minimum investment for thie service is $5000. Please specify an amount greater than $5000')
+                return elicit_slot(intent_request['sessionAttributes'], intent_request['currentIntent']['name'], slots,validation_result["violatedSlot"],validation_result["message"])
         output_session_attributes = intent_request["sessionAttributes"]
 
         # Once all slots are valid, a delegate dialog is returned to Lex to choose the next course of action.
         return delegate(output_session_attributes, get_slots(intent_request))
 
-    return close(
-        intent_request["sessionAttributes"],
-        "Fulfilled",
-        {
-            "contentType": "PlainText",
-            "content": "100% Bond"
+    if risk_level =='None':
+        return close(
+            intent_request["sessionAttributes"],
+            "Fulfilled",
+            {
+                "contentType": "PlainText",
+                "content": "100% bonds (AGG), 0% equities (SPY)"
             
-        },
-    )
+            },
+        )
+    elif risk_level == 'Low':
+        return close(
+            intent_request["sessionAttributes"],
+            "Fulfilled",
+            {
+                "contentType": "PlainText",
+                "content": "60% bonds (AGG), 40% equities (SPY)"
+            
+            },
+        )
+    elif risk_level == 'Medium':
+        return close(
+            intent_request["sessionAttributes"],
+            "Fulfilled",
+            {
+                "contentType": "PlainText",
+                "content": "40% bonds (AGG), 60% equities (SPY)"
+            
+            },
+        )
+    elif risk_level == 'High':
+        return close(
+            intent_request["sessionAttributes"],
+            "Fulfilled",
+            {
+                "contentType": "PlainText",
+                "content": "20% bonds (AGG), 80% equities (SPY)"
+            
+            },
+        )
 
 
 
