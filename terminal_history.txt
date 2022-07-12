@@ -1,0 +1,47 @@
+    1  history
+    2  cd c:/RajB*
+    3  cd challenge15
+    4  git config --global user.name Raj Tolani
+    5  git config --global user.email admin@tolanicollection.com
+    6  git clone https://github.com/rajtolani/Challenge15RoboAdvisor.git
+    7  ls
+    8  cd ch*
+    9  git status
+   10  ls
+   11  cd Ch*
+   12  git status
+   13  git add .
+   14  git status
+   15  git commit -m "Initial submission. Will further enhance"
+   16  git push
+   17  git status
+   18  git status
+   19  git add .
+   20  git status
+   21  git commit -m "Added the video clip of Amazon Lex working with Lambda Function"
+   22  git push
+   23  git status
+   24  git add .
+   25  git commit -m "Added the compressed video clip of Amazon Lex working with Lambda Function"
+   26  git push
+   27  git status
+   28  ls
+   29  git -rm Amazon Lex with Lambda Function.mp4
+   30  git rm Amazon Lex with Lambda Function.mp4
+   31  git rm 'Amazon Lex with Lambda Function.mp4'
+   32  ls
+   33  git status
+   34  git push
+   35  git add .
+   36  git reset --soft HEAD~
+   37  git status
+   38  git reset --soft HEAD~
+   39  git status
+   40  git status
+   41  git add .
+   42  git status
+   43  git commit -m "Added the compressed video clip of Amazon Lex working with Lambda Function"
+   44  git push
+   45  git status
+   46  history
+   47  history >terminal_history.txt
